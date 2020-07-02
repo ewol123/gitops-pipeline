@@ -1,0 +1,23 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: chat-service-rc
+  namespace: stg
+  labels:
+    chart: chat-service
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:stg-*
+spec:
+  releaseName: chat-service-rc
+  chart:
+    git: git@github.com:gyulavaripeter/gitops-pipeline
+    path: charts/chat-service
+    ref: master
+  values:
+    image: gyulavaripeter/chat-service:stg-9ij63o4c
+    replicaCount: 2
+    hpa:
+      enabled: true
+      maxReplicas: 10
+      cpu: 50
