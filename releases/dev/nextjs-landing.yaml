@@ -1,0 +1,19 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: nextjs-landing-dev
+  namespace: dev
+  labels:
+    chart: nextjs-landing
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:dev-*
+spec:
+  releaseName: nextjs-landing-dev
+  chart:
+    git: git@github.com:gyulavaripeter/gitops-pipeline
+    path: charts/nextjs-landing
+    ref: master
+  values:
+    image: gyulavaripeter/nextjs-landing:dev-kb9lm91e
+    replicaCount: 1

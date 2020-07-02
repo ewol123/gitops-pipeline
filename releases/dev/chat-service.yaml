@@ -1,0 +1,20 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: chat-service-dev
+  namespace: dev
+  labels:
+    chart: chat-service
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:dev-*
+spec:
+  releaseName: chat-service-dev
+  chart:
+    git: git@github.com:gyulavaripeter/gitops-pipeline
+    path: charts/chat-service
+    ref: master
+  values:
+    image: gyulavaripeter/chat-service:dev-kb9lm91e
+    replicaCount: 1
+    
