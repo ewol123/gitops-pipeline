@@ -1,0 +1,33 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: nextjs-landing-prod
+  namespace: prod
+  labels:
+    chart: nextjs-landing
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.4
+spec:
+  releaseName: nextjs-landing-prod
+  chart:
+    git: git@github.com:gyulavaripeter/gitops-pipeline
+    path: charts/nextjs-landing
+    ref: master
+  values:
+    image: gyulavaripeter/nextjs-landing:0.4.10
+    replicaCount: 3
+    hpa:
+      enabled: true
+      maxReplicas: 10
+      cpu: 50
+    canary:
+        enabled: true
+        istioIngress:
+          enabled: true
+          gateway: public-gateway.istio-system.svc.cluster.local
+          host: next.qchat.ga
+        loadtest:
+          enabled: true
+        helmtest:
+          enabled: true

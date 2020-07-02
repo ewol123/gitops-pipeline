@@ -1,0 +1,33 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: quasar-chat-prod
+  namespace: prod
+  labels:
+    chart: quasar-chat
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.4
+spec:
+  releaseName: quasar-chat-prod
+  chart:
+    git: git@github.com:gyulavaripeter/gitops-pipeline
+    path: charts/quasar-chat
+    ref: master
+  values:
+    image: gyulavaripeter/quasar-chat:0.4.10
+    replicaCount: 3
+    hpa:
+      enabled: true
+      maxReplicas: 10
+      cpu: 50
+    canary:
+        enabled: true
+        istioIngress:
+          enabled: true
+          gateway: public-gateway.istio-system.svc.cluster.local
+          host: chat.qchat.ga
+        loadtest:
+          enabled: true
+        helmtest:
+          enabled: true
