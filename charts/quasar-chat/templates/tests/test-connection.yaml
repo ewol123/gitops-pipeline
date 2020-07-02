@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "quasar-chat.fullname" . }}-test-connection"
+  labels:
+{{ include "quasar-chat.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "quasar-chat.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
