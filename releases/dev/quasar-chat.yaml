@@ -16,4 +16,4 @@ spec:
     ref: master
   values:
     image: gyulavaripeter/quasar-chat:0.4.10
-    replicaCount: 3
+    replicaCount: 1
