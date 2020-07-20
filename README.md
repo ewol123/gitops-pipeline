@@ -13,7 +13,7 @@ https://www.weave.works/blog/automated-canary-management-to-kubernetes-with-flag
 
 ## requirements
 
-see: https://github.com/ewol123/kops-aws-terraform/K8S
+see: https://github.com/ewol123/kops-aws-terraform/tree/master/K8S
 
 
 ## how it works
