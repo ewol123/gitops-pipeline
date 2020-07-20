@@ -15,7 +15,9 @@ spec:
     path: charts/chat-service
     ref: master
   values:
-    image: gyulavaripeter/chat-service:stg-9ij63o4c
+    image: 
+      repository: gyulavaripeter/chat-service
+      tag: stg-095c6c8
     replicaCount: 2
     hpa:
       enabled: true

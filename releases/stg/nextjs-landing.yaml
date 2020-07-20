@@ -15,7 +15,9 @@ spec:
     path: charts/nextjs-landing
     ref: master
   values:
-    image: gyulavaripeter/nextjs-landing:stg-9ij63o4c
+    image: 
+      repository: gyulavaripeter/nextjs-landing
+      tag: stg-6527b55
     replicaCount: 2
     hpa:
       enabled: true

@@ -1,19 +1,21 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: quasar-chat-prod
-  namespace: prod
+  name: quasar-chat-dev
+  namespace: dev
   labels:
     chart: quasar-chat
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~0.4
+    flux.weave.works/tag.chart-image: glob:dev-*
 spec:
-  releaseName: quasar-chat-prod
+  releaseName: quasar-chat-dev
   chart:
     git: git@github.com:gyulavaripeter/gitops-pipeline
     path: charts/quasar-chat
     ref: master
   values:
-    image: gyulavaripeter/quasar-chat:0.4.10
+    image: 
+      repository: gyulavaripeter/quasar-chat
+      tag: dev-727a218
     replicaCount: 1

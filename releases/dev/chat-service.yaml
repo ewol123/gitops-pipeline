@@ -15,6 +15,8 @@ spec:
     path: charts/chat-service
     ref: master
   values:
-    image: gyulavaripeter/chat-service:dev-kb9lm91e
+    image: 
+      repository: gyulavaripeter/chat-service
+      tag: dev-a914121
     replicaCount: 1
     

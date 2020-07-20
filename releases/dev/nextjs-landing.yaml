@@ -15,5 +15,7 @@ spec:
     path: charts/nextjs-landing
     ref: master
   values:
-    image: gyulavaripeter/nextjs-landing:dev-kb9lm91e
+    image: 
+      repository: gyulavaripeter/nextjs-landing
+      tag: dev-88b25bd
     replicaCount: 1
