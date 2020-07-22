@@ -17,7 +17,7 @@ spec:
   values:
     image: 
       repository: gyulavaripeter/chat-service
-      tag: v1.0.1
+      tag: v1.0.2
     replicaCount: 3
     hpa:
       enabled: true
